@@ -16,3 +16,6 @@ O projeto tem como objetivo criar um projeto de gerenciamento de estoque, possui
  - Requisitos não-funcionais
  - Requisitos do usuário
  - Linguagens para o desenvolvimento
+
+** Trello **
+https://trello.com/b/in85A0bD/software-product-analysis-specification-project-implementation
