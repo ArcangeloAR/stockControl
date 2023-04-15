@@ -19,3 +19,6 @@ O projeto tem como objetivo criar um projeto de gerenciamento de estoque, possui
 
 ** Trello **
 https://trello.com/b/in85A0bD/software-product-analysis-specification-project-implementation
+
+** YouTube **
+https://youtu.be/icUiqlb9aUs
