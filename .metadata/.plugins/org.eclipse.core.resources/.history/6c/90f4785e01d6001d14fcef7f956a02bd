@@ -1,0 +1,113 @@
+package stockControl.view;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import stockControl.control.ScreenControl;
+import stockControl.model.Operation;
+
+public class OperationListView {
+	
+	private ScreenControl screenControl;
+	
+	
+	public OperationListView(ScreenControl screenControl) {
+		super();
+		this.screenControl = screenControl;
+	}
+	
+	
+	public void showOperationList() {
+		ArrayList<Operation> operationList = screenControl.getStarter().getRepository().getRepositoryOperation();
+		System.out.print("\n-------------------------------------------------------------------------------------\n");
+		String primeiraLinha = "";
+		for(String legendaPrimeiraLinha : screenControl.getStarter().getRepository().getRepositoryPrimeiraLinha()) {
+			primeiraLinha = primeiraLinha + formatarCelula(legendaPrimeiraLinha);
+		}
+		System.out.print("\n******************************************************************************************************************\n"
+				+ primeiraLinha
+				+ "\n******************************************************************************************************************\n");
+		
+		for(Operation operation : operationList) {
+			String tipoOperation = "";
+			String log = "";
+			String valorUnitarioFormatado = formatarMoeda(operation.getProduct().getValorUnitario().toString());
+			Double valorTotalProducts = operation.getProduct().getQuantidade() * operation.getProduct().getValorUnitario();
+			String valorTotalProductsFormatado = formatarMoeda(valorTotalProducts.toString());
+			Date dataHoraAtual = new Date();
+			String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+			String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+			Integer sizeRepositoryOperation = (getScreenControl().getStarter().getRepository().getRepositoryOperation().size());
+			Long idNewOperation = (long) (sizeRepositoryOperation + 1);
+			switch(operation.getTipo()) {
+				case 1:
+					tipoOperation = "Entrada";
+					break;
+				case 2:
+					tipoOperation = "Saída";
+					break;
+			}
+//			log = "\nFoi " + tipoOperation + " a quantidade de " +  operation.getProduct().getQuantidade() + " do produto " +  operation.getProduct().getNome() + 
+//					" no valor unitário de R$ " + valorUnitarioFormatado + ", portanto, valor total de R$ " + valorTotalProductsFormatado +
+//					". Esse produto é referente a categoria " +  operation.getCategory().getTitulo() + " e essa operação foi realizada na data " + 
+//					data + " e horário " + hora + ".";
+			
+			log = formatarCelula(tipoOperation) + formatarCelula(operation.getProduct().getQuantidade().toString()) + formatarCelula(operation.getProduct().getNome()) + 
+					formatarCelula(valorUnitarioFormatado) + formatarCelula(valorTotalProductsFormatado) +
+					formatarCelula(operation.getCategory().getTitulo()) + formatarCelula(data) + formatarCelula(hora);
+			System.out.print(log
+					+ "\n******************************************************************************************************************\n");
+		}
+	}
+	
+	public String formatarMoeda(String valor) {
+		valor.replace(".", ",");
+		if(valor.length() < 4) {
+			valor = valor + "0";
+		}
+		return valor;
+	}
+	
+	public String formatarCelula(String valor) {
+		if(valor.length() < 11) {
+			int tamanhoEspaco = 14 - valor.length();
+			int tamanhoEspacoCadaLado = tamanhoEspaco/2;
+			String espacos = "";
+			if(tamanhoEspacoCadaLado == 10) {
+				espacos = "          ";
+			} else if(tamanhoEspacoCadaLado == 9) {
+				espacos = "         ";
+			} else if(tamanhoEspacoCadaLado == 8) {
+				espacos = "        ";
+			} else if(tamanhoEspacoCadaLado == 7) {
+				espacos = "       ";
+			} else if(tamanhoEspacoCadaLado == 6) {
+				espacos = "      ";
+			} else if(tamanhoEspacoCadaLado == 5) {
+				espacos = "     ";
+			} else if(tamanhoEspacoCadaLado == 4) {
+				espacos = "    ";
+			} else if(tamanhoEspacoCadaLado == 3) {
+				espacos = "   ";
+			} else if(tamanhoEspacoCadaLado == 2) {
+				espacos = "  ";
+			} else if(tamanhoEspacoCadaLado == 1) {
+				espacos = " ";
+			}
+			String valorModificado = "*" + espacos + valor + espacos + "*";
+			valor = valorModificado;
+		}
+		return valor;
+	}
+
+
+	public ScreenControl getScreenControl() {
+		return screenControl;
+	}
+
+	public void setScreenControl(ScreenControl screenControl) {
+		this.screenControl = screenControl;
+	}
+	
+}

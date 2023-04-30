@@ -1,0 +1,5 @@
+package com.stockControl.service;
+
+public class CategoriaController {
+
+}
