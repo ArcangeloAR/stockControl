@@ -1,0 +1,33 @@
+1681215768027	Copy compilation unit
+1681239516446	Delete element
+1681300050264	Rename type 'ProductAddView'
+1681311713225	Rename type 'ProductAddRemoveView'
+1681320369774	Copy compilation unit
+1681320402313	Delete element
+1681324147306	Copy compilation unit
+1681380397195	Delete element
+1681384203474	Move compilation unit
+1681444224432	Rename type 'Category'
+1681444227951	Rename type 'Operation'
+1681444231454	Rename type 'Product'
+1681444237149	Rename type 'CategoryControl'
+1681444241722	Rename type 'OperationControl'
+1681444245218	Rename type 'ProductControl'
+1681444254309	Rename type 'ScreenControl'
+1681444263514	Rename type 'Repository'
+1681444287660	Rename type 'CategoryAddEditRemoveView'
+1681444293189	Rename type 'ProductAddEditRemoveView'
+1681444307352	Rename type 'CategoryListView'
+1681444322436	Rename type 'CategoriaAddEdicaoRemocaoView'
+1681444328035	Rename type 'OperationListView'
+1681444334444	Rename type 'OperationDataTable'
+1681444343727	Rename type 'CategoriaDataTable'
+1681444348534	Rename type 'CategoriaViewDataTable'
+1681444351438	Rename type 'CategoriaPanel'
+1681444358004	Rename type 'OperacaoDataTable'
+1681444363599	Rename type 'ProductListView'
+1681444370286	Rename type 'ProdutoAddEdicaoRemocaoView'
+1681444381156	Rename type 'StarterPage'
+1681444397487	Rename type 'Starter'
+1681444406489	Rename type 'Main'
+1681444656855	Rename type 'Menu'

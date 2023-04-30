@@ -1,0 +1,85 @@
+package com.stockControl.controller;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired; //
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin; //
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping; //
+import org.springframework.web.bind.annotation.RestController; //
+
+import com.stockControl.model.Categoria;
+import com.stockControl.model.Operacao;
+import com.stockControl.model.Produto;
+import com.stockControl.model.Tipo;
+import com.stockControl.model.Usuario;
+import com.stockControl.repository.OperacaoRepository;
+
+@RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/operacoes")
+public class OperacaoController {
+
+	@Autowired
+	private OperacaoRepository repository;
+	
+	
+	@GetMapping
+	public ResponseEntity<List<Operacao>> GetAll() {
+		return ResponseEntity.ok(repository.findAll());
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Operacao> GetById(@PathVariable long id) {
+		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+	}
+
+	@GetMapping("/datas/{data}")
+	public ResponseEntity<List<Operacao>> GetByData(@PathVariable Date data) {
+		return ResponseEntity.ok(repository.findAllByData(data));
+	}
+
+	@GetMapping("/tipo/{tipo}")
+	public ResponseEntity<List<Operacao>> GetByTipo(@PathVariable Tipo tipo) {
+		return ResponseEntity.ok(repository.findAllByTipo(tipo));
+	}
+	
+//	@GetMapping("/usurios/{usurio}")
+//	public ResponseEntity<List<Operacao>> GetByUsuario(@PathVariable Usuario usuario) {
+//		return ResponseEntity.ok(repository.findAllByUsuarioContainingIgnoreCase(usuario));
+//	}
+//	
+//	@GetMapping("/produtos/{produto}")
+//	public ResponseEntity<List<Operacao>> GetByProduto(@PathVariable Produto produto) {
+//		return ResponseEntity.ok(repository.findAllByProdutoContainingIgnoreCase(produto));
+//	}
+//	
+//	@GetMapping("/categorias/{categoria}")
+//	public ResponseEntity<List<Operacao>> GetByCategoria(@PathVariable Categoria categoria) {
+//		return ResponseEntity.ok(repository.findAllByCategoriaContainingIgnoreCase(categoria));
+//	}
+	
+	@PostMapping
+	public ResponseEntity<Operacao> post(@RequestBody Operacao operacao) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(operacao));
+	}
+
+	@PutMapping
+	public ResponseEntity<Operacao> put(@RequestBody Operacao operacao) {
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(operacao));
+	}
+
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable long id) {
+		repository.deleteById(id);
+	}
+	
+}

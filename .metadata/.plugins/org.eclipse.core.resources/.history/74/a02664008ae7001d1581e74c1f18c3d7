@@ -1,0 +1,10 @@
+package com.stockControl.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "operacao")
+public class Operacao {
+
+}

@@ -1,0 +1,69 @@
+package com.stockControl.seguranca;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@EnableWebSecurity
+public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Autowired
+	private UserDetailsService userDetailService;
+	
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailService);
+	}
+
+	@Bean
+	public PasswordEncoder asswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+			.antMatchers("/").permitAll()
+			.antMatchers(HttpMethod.GET, "/usuarios").permitAll()
+	        .antMatchers(HttpMethod.POST,"/usuarios/cadastrar").permitAll()
+	        .antMatchers(HttpMethod.POST, "/usuarios/logar").permitAll()
+	        
+	        .antMatchers(HttpMethod.GET, "/categorias").permitAll()
+	        .antMatchers(HttpMethod.GET, "/categorias/{id}").permitAll()
+	        .antMatchers(HttpMethod.GET,"/categorias/titulo/{titulo}").permitAll()
+	        .antMatchers(HttpMethod.POST, "/categorias").permitAll()
+	        .antMatchers(HttpMethod.PUT, "/categorias").permitAll()
+	        .antMatchers(HttpMethod.DELETE, "/categorias/{id}").permitAll()
+	        
+	        .antMatchers(HttpMethod.GET, "/operacoes").permitAll()
+	        .antMatchers(HttpMethod.GET, "/operacoes/{id}").permitAll()
+	        .antMatchers(HttpMethod.GET,"/operacoes/titulo/{tipo}").permitAll()
+	        .antMatchers(HttpMethod.POST, "/operacoes").permitAll()
+	        .antMatchers(HttpMethod.PUT, "/operacoes").permitAll()
+	        .antMatchers(HttpMethod.DELETE, "/operacoes/{id}").permitAll()
+	        
+	        .antMatchers(HttpMethod.GET, "/produtos").permitAll()
+	        .antMatchers(HttpMethod.GET, "/produtos/{id}").permitAll()
+	        .antMatchers(HttpMethod.GET,"/produtos/nome/{nome}").permitAll()
+	        .antMatchers(HttpMethod.POST, "/produtos").permitAll()
+	        .antMatchers(HttpMethod.PUT, "/produtos").permitAll()
+	        .antMatchers(HttpMethod.DELETE, "/produtos/{id}").permitAll()
+	        
+			.anyRequest().authenticated()
+			.and().httpBasic()
+			.and().sessionManagement()
+			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.and().cors()
+			.and().csrf().disable();
+	}
+	
+}
