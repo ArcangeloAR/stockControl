@@ -1,1 +1,3 @@
+<app-menu *ngIf="authService.login()"></app-menu>
 <router-outlet></router-outlet>
+<app-rodape *ngIf="authService.login()"></app-rodape>

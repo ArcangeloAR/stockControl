@@ -1,5 +1,6 @@
 import { Tipo } from "./TIpo"
 
+
 export class Operacao {
     public id: number
     public : string

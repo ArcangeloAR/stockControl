@@ -21,7 +21,7 @@ public class Produto {
 	private Long id;
 
 	@NotBlank
-	@Size(min = 5, max = 250, message = "Entre 5 e 250 caracteres")
+	@Size(max = 250, message = "Máximo de 250 caracteres")
 	private String nome;
 
 	@NotNull

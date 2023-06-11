@@ -1,0 +1,123 @@
+<div class="conteiner-fluid">
+
+    <div class="row bg-secondary">
+        <div class="col-md-6">
+
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-6 text-white">
+                    <h1 class="fs-54">Boas vindas, {{nome}}! </h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mt-3 mb-5">
+                    <a class="btn btn-outline-light mr-2" href="#nav-estoque-tab">Visualizar Estoque de Produtos</a>
+                    <a class="btn btn-outline-light mr-2" href="#nav-categoria">Visualizar Categorias de Produtos Existentes</a>
+                    <a class="btn btn-outline-light mr-2" href="#nav-logOperacoes">Visualizar Log de Operações Realizadas</a>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 d-flex justify-content-center">
+            <img src="https://i.imgur.com/Vop2lNV.png" alt="Imagem de Capa" width="500px" height="500px">
+        </div>
+    </div>
+</div>
+
+
+<!-- Botão para acionar modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#novoProduto">
+    Novo Produto
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="novoProduto" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="TituloModalCentralizado">Novo Produto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="nomeProduto">Nome do Produto</label>
+                <input type="text" class="form-control" id="nomeProduto" placeholder="Digite o nome do produto">
+            </div>
+            <div class="form-group">
+                <label for="codigoProduto">Quantidade do Produto</label>
+                <input type="number" class="form-control" id="quantidadeProduto" placeholder="Digite a quantidade do produto">
+            </div>
+            <div class="form-group">
+                <label for="codigoProduto">Valor Total do Produto</label>
+                <input type="number" class="form-control" id="valorTotalProduto" placeholder="Digite o valor total do produto">
+            </div>
+            <div class="form-group">
+                <label for="codigoProduto">Código do Produto</label>
+                <input type="text" class="form-control" id="codigoProduto" placeholder="Digite o código do produto">
+            </div>
+            <div class="form-group">
+                <label for="categoriaProduto">Informe a categoria do produto ou <a routerLink="/categoria" data-dismiss="modal">cadastre um novo</a>: </label>
+                <select class="form-control" name="categoria" id="categoriaProduto">
+                    <option value="">Categorias</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!-- Botão para acionar modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#novaCategoria">
+    Nova Categoria
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="novaCategoria" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="TituloModalCentralizado">Título do modal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-success">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container mb-5 mt-5" id="estoqueDeProdutos">
+    <nav>
+        <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active text-secondary font-weight-bold" id="nav-estoque" data-toggle="tab" href="#nav-estoque" role="tab" aria-controls="nav-estoque-tab" aria-selected="true">Estoque de Produtos</a>
+          <a class="nav-item nav-link text-secondary font-weight-bold" id="nav-categoria" data-toggle="tab" href="#nav-categoria" role="tab" aria-controls="nav-categoria-tab" aria-selected="false">Categorias de Produtos</a>
+          <a class="nav-item nav-link text-secondary font-weight-bold" id="nav-logOperacoes" data-toggle="tab" href="#nav-logOpercoes" role="tab" aria-controls="nav-logOpercoes-tab" aria-selected="false">Log de Operações</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-estoque-tab" role="tabpanel" aria-labelledby="nav-estoque">...</div>
+        <div class="tab-pane fade" id="nav-categoria-tab" role="tabpanel" aria-labelledby="nav-categoria">...</div>
+        <div class="tab-pane fade" id="nav-logOpercoes-tab" role="tabpanel" aria-labelledby="nav-logOperacoes">...</div>
+      </div>
+</div>
+
